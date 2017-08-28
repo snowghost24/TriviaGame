@@ -18,8 +18,157 @@
 </head>
 
 <body>
+
+   <div id="problem">
+      <div id="question">
+
+      </div>
+      <div id="answers">
+
+      </div>
+
+
+   </div>
+
    <!-- javascript link -->
    <script src="assets/javascript/game.js"></script>
+   <script>
+      $(document).ready(function () {
+         //Start of jQuery////////////////////////////////////////////////////////////////////////////
+         function display(question, rightAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3) {
+            this.question = question;
+            this.righAnswer = rightAnswer;
+            this.wrongAnswer1 = wrongAnswer1;
+            this.wrongAnswer2 = wrongAnswer2;
+            this.wrongAnswer3 = wrongAnswer3
+         }
+
+         var display1 = new display("Who is jose?", "a champ", " a programmer", " a cow", "a lion");
+         var display2 = new display("Who has the most 3 pointers in a single season?", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry");
+         var display3 = new display("Who has the most 3 pointers in a single game", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry");
+         var display4 = new display("Who has the most points in a single nba quater", "Michael Jorda", "Kobe Bryant", " Klay Thompson", "Steph Curry");
+
+
+         // displays question on the screen
+         function displayVals(pag) {
+            $.each(pag, function (key, value) {
+               var x = value;
+               // console.log(key);
+               if (key == "question") {
+                  $("#question").html("<h3>" + value + "</h3>");
+                  console.log(display1["righAnswer"]);
+                  // console.log("this is the question");
+               } else {
+                  $("#answers").append("<h4>" + value + "</h4>");
+                  console.log(key);
+               }
+               // console.log(value);
+            });
+            // console.log(display1);
+            // console.log(display1.question);
+            checkAnswers(pag);
+         }
+         //goes inside pg
+         displayVals(display1);
+      
+
+
+         function checkAnswers(pag) {
+               document.addEventListener("click", (e) => {
+
+                  var hitTarget = e.target.innerHTML;
+                  if (pag == display1){
+                  if (hitTarget == "a champ") {
+                     console.log("You made it");
+                     $("h4").remove();
+                     setTimeout(function () { displayVals(display2); }, 5000);
+                     // setTimeOut(function () { displayVals(display2)}, 1000*5
+                  
+                  }}
+
+                      if (pag == display2) {
+                           if (hitTarget == "Steph Curry") {
+                              console.log("You made it again");
+                              $("h4").remove();
+                              displayVals(display3);
+                           }
+                        }
+
+
+
+                  console.log(e.target);
+                  console.log(hitTarget);
+               }
+               )
+            };
+
+         checkAnswers();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         var trivia = {
+            questions: {
+
+               q1: {
+                  questionString: " are birds orange? ",
+                  wrongAnswers: ["yes", "no", "yes"],
+                  righAnswer: " ov couse"
+               },
+
+               q2: {
+                  questionString: " are birds orange? ",
+                  wrongAnswers: ["yes", "no", "yes"],
+                  righAnswer: " ov couse"
+               },
+               q3: {
+                  questionString: " are birds orange? ",
+                  wrongAnswers: ["yes", "no", "yes"],
+                  righAnswer: " ov couse"
+               },
+               q4: {
+                  questionString: " are birds orange? ",
+                  wrongAnswers: ["yes", "no", "yes"],
+                  righAnswer: " ov couse"
+               },
+
+            },
+            lookup: function () {
+
+               $.each(this.questions.q1, function (key, value) {
+                  // console.log(key);
+                  // console.log(value);
+
+               })
+               // console.log(Object.keys(this.questions.q1));
+
+               // console.log(this.q1[0]);
+               // console.log(this.q1.questionString);
+               //  console.log(this.q1.questionString);
+            }
+
+         }
+         trivia.lookup();
+         // End of jQuery/////////////////////////////////////////////////////////////////////////////////
+      })
+   </script>
 
 </body>
+
 </html>
