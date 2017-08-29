@@ -18,6 +18,9 @@
 </head>
 
 <body>
+   <div id="status">
+
+   </div>
 
    <div id="problem">
       <div id="question">
@@ -33,6 +36,15 @@
    <!-- javascript link -->
    <script src="assets/javascript/game.js"></script>
    <script>
+       function countDown(secs, elem) {
+            var element = document.querySelector("#status");
+            element.innerHTML = secs;
+            secs--;
+            var timer = setTimeout('countDown(' + secs + ',"' + elem + '")', 1000)
+            if (secs <= -1) {
+               clearTimeout(timer);
+            }
+         }
       $(document).ready(function () {
          //Start of jQuery////////////////////////////////////////////////////////////////////////////
          function display(question, rightAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3) {
@@ -47,7 +59,10 @@
          var display2 = new display("Who has the most 3 pointers in a single season?", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry");
          var display3 = new display("Who has the most 3 pointers in a single game", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry");
          var display4 = new display("Who has the most points in a single nba quater", "Michael Jorda", "Kobe Bryant", " Klay Thompson", "Steph Curry");
+         // Starts the timer
+         
 
+          
 
          // displays question on the screen
          function displayVals(pag) {
@@ -70,7 +85,8 @@
          }
          //goes inside pg
          displayVals(display1);
-      
+         // starts the counter
+        countDown(15,"status");
 
 
          function checkAnswers(pag) {
