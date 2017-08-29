@@ -1,77 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>Document</title>
+   <!-- bootstrap link -->
+   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css'
+   />
+   <!-- jquery link -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <!-- css link -->
+   <link rel="stylesheet" href="assets/css/style.css">
+   <title>Trivia Game</title>
 </head>
+
 <body>
+   <div id="status"></div>
+   <div id="problem">
+      <div id="question"></div>
+      <div id="answers"></div>
+   </div>
 
-<div id="status">
+   <p id="demo"></p>
+   <div class="gif-spot"></div>
+   <div class="gif-spot1"></div>
 
-</div>
 
-
+   <!-- javascript link -->
+   <script src="assets/javascript/game.js"></script>
    <script>
+      // Timer Function
+      function countDown(secs, elem) {
+         var element = document.querySelector("#status");
+         element.innerHTML = secs;
+         secs--;
+         var timer = setTimeout('countDown(' + secs + ',"' + elem + '")', 1000)
+         window.timer = timer;
+         if (secs <= -1) {
+            clearTimeout(timer);
+            console.log(page);
 
-      function countDown (secs,elem){
-      var element = document.querySelector("#status");
-      element.innerHTML = secs;
-      secs--;
-      var timer = setTimeout('countDown('+secs+',"'+elem+'")',1000)
-      if (secs <= -1){
-         clearTimeout(timer);
+            function test1(received) {
+
+               var day;
+               switch (received) {
+                  case "Whos is the only regular season Unanimous MVP?":
+                      displayVals(display2);
+                      countDown(15, "status")
+                     break;
+                  case "Who has the most 3 pointers in a single season?":
+                    displayVals(display3);
+                     countDown(15, "status")
+                     break;
+                  case "Who has the most 3 pointers in a single game":
+                     displayVals(display4);
+                     countDown(15, "status")
+                     break;
+                  case "Who has the most points in a single nba quater":
+                     day = "Wednesday";
+                     break;
+                  case 4:
+                     day = "Thursday";
+                     // $(".gif-spot").prepend('<img src="assets/images/curryface.gif" />');
+                     break;
+                  case 5:
+                     day = "Friday";
+                     break;
+                  case 6:
+                     day = "Saturday";
+               }
+            //   console.log(day);
+            }        
+          test1(page.question);
+         }
       }
-      
-      
-   }
-   countDown(15, "status");
 
-   var trivia = {
-         questions: {
+      function display(question, rightAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3) {
+         this.question = question;
+         this.righAnswer = rightAnswer;
+         this.wrongAnswer1 = wrongAnswer1;
+         this.wrongAnswer2 = wrongAnswer2;
+         this.wrongAnswer3 = wrongAnswer3
+      }
 
-            q1: {
-               questionString: " are birds orange? ",
-               wrongAnswers: ["yes", "no", "yes"],
-               righAnswer: " ov couse"
-            },
+      var display1 = new display("Whos is the only regular season Unanimous MVP?", "Michael Jordan", " Magic Johnson", "Steph Curry", "Lebron James");
+      var display2 = new display("Who has the most 3 pointers in a single season?", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry");
+      var display3 = new display("Who has the most 3 pointers in a single game", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry");
+      var display4 = new display("Who has the most points in a single nba quater", "Michael Jorda", "Kobe Bryant", " Klay Thompson", "Steph Curry");
 
-            q2: {
-               questionString: " are birds orange? ",
-               wrongAnswers: ["yes", "no", "yes"],
-               righAnswer: " ov couse"
-            },
-            q3: {
-               questionString: " are birds orange? ",
-               wrongAnswers: ["yes", "no", "yes"],
-               righAnswer: " ov couse"
-            },
-            q4: {
-               questionString: " are birds orange? ",
-               wrongAnswers: ["yes", "no", "yes"],
-               righAnswer: " ov couse"
-            },
 
-         },
-         lookup: function () {
 
-            $.each(this.questions.q1, function (key, value) {
-               // console.log(key);
-               // console.log(value);
-
-            })
-            // console.log(Object.keys(this.questions.q1));
-
-            // console.log(this.q1[0]);
-            // console.log(this.q1.questionString);
-            //  console.log(this.q1.questionString);
+      $(document).ready(function () {
+      //Start of jQuery////////////////////////////////////////////////////////////////////////////
+         // Displays question on the screen
+         window.displayVals = function (page) {
+            $("h4").remove();
+            $.each(page, function (key, value) {
+               if (key == "question") {
+                  $("#question").html("<h3>" + value + "</h3>");
+                  // console.log(display1["righAnswer"]);
+               } else {
+                  $("#answers").append("<h4>" + value + "</h4>");
+               }
+            });
+            checkAnswers(page);
+            window.page = page;
          }
 
-      }
-      trivia.lookup();
-   
+
+
+
+         //goes inside pg
+         displayVals(display1);
+         // starts the counter
+         countDown(15, "status");
+
+
+         function checkAnswers(page) {
+               document.addEventListener("click", (e) => {
+                  var hitTarget = e.target.innerHTML;
+                  if (page == display1 && hitTarget == "Steph Curry") {
+                     $(".gif-spot").prepend('<img src="assets/images/curryface.gif" />');
+                     setTimeout(function () { nextQuestionRight();
+                     displayVals(display2); }, 2600)
+                  } else if (page == display1 && hitTarget !== "Steph Curry") {
+                     $(".gif-spot").prepend('<img src="assets/images/westbrookface.gif" />');
+                     nextQuestionWrong();
+                     displayVals(display2);
+                     
+                  }
+
+                  if (page == display2 && hitTarget == "Ray Allen") {
+                     $(".gif-spot1").append('<img src="assets/images/raygame6.gif" />');
+                     console.log("You made it again");
+                     $("h4").remove();
+                    setTimeout(function () {
+                        nextQuestionRight();
+                        displayVals(display3);
+                          $(".gif-spot1").remove();
+                     }, 4000)
+                  } else if (page == display2 && hitTarget !== "Steph Curry") {
+                     $(".gif-spot").prepend('<img src="assets/images/westbrookface.gif" />');
+                     nextQuestionWrong();
+                  }
+
+
+                  if (page == display3 && hitTarget == "Steph Curry") {
+                     $(".gif-spot1").append('<img src="assets/images/curryslickmove.gif" />');
+                     console.log("You made it again");
+                     $("h4").remove();
+                     displayVals(display3);
+                  } else if (page == display2 && hitTarget !== "Steph Curry") {
+                     $(".gif-spot").prepend('<img src="assets/images/westbrookface.gif" />');
+                     nextQuestionWrong();
+                  }
+               })
+            };
+
+               // if (page == display2 && hitTarget == "Steph Curry") {
+               //    console.log("im insde");
+               // $(".gif-spot").prepend('<img src="assets/images/curryslickmove.gif" />');
+               //    setTimeout(function () { nextQuestionRight(); }, 2600)
+               // } else if (page == display2 && hitTarget !== "Steph Curry") {
+               //    $(".gif-spot").prepend('<img src="assets/images/westbrookface.gif" />');
+               //    nextQuestionWrong();
+               // }
+
+
+
+
+               
+
+               // if (page == display2) {
+               //    if (hitTarget == "Steph Curry") {
+               //       console.log("You made it again");
+               //       $("h4").remove();
+               //       displayVals(display3);
+               //    }
+               // }
+
+
+
+              
+      
+         // console.log(e.target);
+         // console.log(hitTarget);
+         function nextQuestionRight() {
+            clearTimeout(timer);
+            countDown(15, "status");
+            
+            $(".gif-spot").remove();
+         }
+
+         function nextQuestionWrong() {
+            setTimeout(function () {
+               clearTimeout(timer);
+               countDown(15, "status");
+               displayVals(display2);
+               $(".gif-spot").remove();
+            }, 3000);
+         }
+
+         checkAnswers();
+         // var passedTime = 3;
+
+function test1 (received){
+
+         var day;
+            switch (received) {
+               case 0:
+                  day = "Sunday";
+                  break;
+               case 1:
+                  day = "Monday";
+                  break;
+               case 2:
+                  day = "Tuesday";
+                  break;
+               case 3:
+                  day = "Wednesday";
+                  break;
+               case 4:
+                  day = "Thursday";
+                  // $(".gif-spot").prepend('<img src="assets/images/curryface.gif" />');
+                  break;
+               case 5:
+                  day = "Friday";
+                  break;
+               case 6:
+                  day = "Saturday";
+            }
+            document.getElementById("demo").innerHTML = "Today is " + day;
+         }
+
+         test1(4);
+         // End of jQuery/////////////////////////////////////////////////////////////////////////////////
+      })
    </script>
-   
+
 </body>
+
 </html>
