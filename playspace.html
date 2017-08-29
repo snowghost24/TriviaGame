@@ -32,64 +32,75 @@
    <script>
       // Timer Function
       function countDown(secs, elem) {
-         var element = document.querySelector("#status");
-         element.innerHTML = secs;
-         secs--;
-         var timer = setTimeout('countDown(' + secs + ',"' + elem + '")', 1000)
-         window.timer = timer;
-         if (secs <= -1) {
-            clearTimeout(timer);
-            console.log(page);
+            var element = document.querySelector("#status");
+            element.innerHTML = secs;
+            secs--;
+            var timer = setTimeout('countDown(' + secs + ',"' + elem + '")', 1000)
+            window.timer = timer;
+            if (secs <= -1) {
+               clearTimeout(timer);
+               console.log(page);
 
-            function test1(received) {
-
-               var day;
-               switch (received) {
-                  case "Whos is the only regular season Unanimous MVP?":
-                      displayVals(display2);
-                      countDown(15, "status")
-                     break;
-                  case "Who has the most 3 pointers in a single season?":
-                    displayVals(display3);
-                     countDown(15, "status")
-                     break;
-                  case "Who has the most 3 pointers in a single game":
-                     displayVals(display4);
-                     countDown(15, "status")
-                     break;
-                  case "Who has the most points in a single nba quater":
-                     day = "Wednesday";
-                     break;
-                  case 4:
-                     day = "Thursday";
-                     // $(".gif-spot").prepend('<img src="assets/images/curryface.gif" />');
-                     break;
-                  case 5:
-                     day = "Friday";
-                     break;
-                  case 6:
-                     day = "Saturday";
+               function onQuestion(received) {
+                  countDown(15, "status")
+                  var day;
+                  switch (received) {
+                     case display1.question:
+                        displayVals(display2);
+                        break;
+                     case display2.question:
+                        displayVals(display3);
+                        break;
+                     case display3.question:
+                        displayVals(display4);
+                        break;
+                     case display4.question:
+                        displayVals(display5);
+                        break;
+                     case display5.question:
+                        displayVals(display6);
+                        break;
+                     case display6.question:
+                        displayVals(display7);
+                        break;
+                     case display7.question:
+                        displayVals(display8);
+                        break;
+                     case display8.question:
+                        displayVals(display9);
+                        break;
+                     case display9.question:
+                        displayVals(display10);
+                        break;
+                     case display10.question:
+                        displayVals(display1);
+                  }
+                  //   console.log(day);
                }
-            //   console.log(day);
-            }        
-          test1(page.question);
+               onQuestion(page.question);
+            }
          }
-      }
 
-      function display(question, rightAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3) {
+      function display(question, rightAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3,gif) {
          this.question = question;
          this.righAnswer = rightAnswer;
          this.wrongAnswer1 = wrongAnswer1;
          this.wrongAnswer2 = wrongAnswer2;
          this.wrongAnswer3 = wrongAnswer3
+         this.gif = gif;
       }
 
-      var display1 = new display("Whos is the only regular season Unanimous MVP?", "Michael Jordan", " Magic Johnson", "Steph Curry", "Lebron James");
-      var display2 = new display("Who has the most 3 pointers in a single season?", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry");
-      var display3 = new display("Who has the most 3 pointers in a single game", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry");
-      var display4 = new display("Who has the most points in a single nba quater", "Michael Jorda", "Kobe Bryant", " Klay Thompson", "Steph Curry");
-
-
+      var display1 = new display("Whos is the only regular season Unanimous MVP?", "Michael Jordan", "Magic Johnson", "Steph Curry", "Lebron James", '<img src="assets/images/curryface.gif" />');
+      var display2 = new display("Who has scored the most 3 pointers in NBA history?", "Ray Allen", " Reggie Miller", "Steve Kerr", "Steph Curry", '<img src="assets/images/raygame6.gif" />');
+      var display3 = new display("Who holds the record for most 3 pointers in a single NBA game?", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry", '<img src="assets/images/stephla.gif" />');
+      var display4 = new display("Which player holds the record for most points in an NBA quater?", "Michael Jordan", "Kobe Bryant", " Klay Thompson", "Steph Curry", '<img src="assets/images/klay.gif />');
+      var display5 = new display("Which player has never lost in the NBA finals?", "Bill Russell", "Michael Jordan", " Wilt Charmberlain", "Kareem Abdul Jabbar", '<img src="assets/images/mj.gif />');
+      var display6 = new display("Which team holds the record for most wins in the regular season?", "Los Angeles Lakers", "Golden State Warriors", "Boston Celtics", "Chicago Bulls",'<img src="assets/images/stephandKlay.gif />');
+      var display7 = new display("Who has scored the most points in NBA history?", "Karl Malone", "Kareem Abdul Jabbar", "Michael Jordan", "Lebron James", '<img src="assets/images/kareem.gif />');
+      var display8 = new display("Which player has had the most points in an overtime period?", "Penny Hardaway", "Dirk Nowitzki", "Kobe Bryant", "Gilbert Arenas",'<img src="assets/images/arenas.gif />');
+      var display9 = new display("Who is the NBA all-time leader in assist?", "Magic Johnson", "Steve Nash", " Rajon Rondo", "John Stockton",'<img src="assets/images/stockton.gif />');
+      var display10 = new display("Which player had 4 consecutive 40 point games as a rookie?", "Wilt Chamberlain","Allen Iverson", "Michael Jordan", "Charles Barkley",'<img src="assets/images/stockton.gif />');
+      
 
       $(document).ready(function () {
       //Start of jQuery////////////////////////////////////////////////////////////////////////////
@@ -100,7 +111,9 @@
                if (key == "question") {
                   $("#question").html("<h3>" + value + "</h3>");
                   // console.log(display1["righAnswer"]);
-               } else {
+               } else if(key == "gif"){
+   
+               }else{
                   $("#answers").append("<h4>" + value + "</h4>");
                }
             });
@@ -121,7 +134,7 @@
                document.addEventListener("click", (e) => {
                   var hitTarget = e.target.innerHTML;
                   if (page == display1 && hitTarget == "Steph Curry") {
-                     $(".gif-spot").prepend('<img src="assets/images/curryface.gif" />');
+                     $(".gif-spot").prepend(display1.gif);
                      setTimeout(function () { nextQuestionRight();
                      displayVals(display2); }, 2600)
                   } else if (page == display1 && hitTarget !== "Steph Curry") {
@@ -138,9 +151,9 @@
                     setTimeout(function () {
                         nextQuestionRight();
                         displayVals(display3);
-                          $(".gif-spot1").remove();
+                          $(".gif-spot1").remove('<img src="assets/images/raygame6.gif" />');
                      }, 4000)
-                  } else if (page == display2 && hitTarget !== "Steph Curry") {
+                  } else if (page == display2 && hitTarget !== "Ray Allen") {
                      $(".gif-spot").prepend('<img src="assets/images/westbrookface.gif" />');
                      nextQuestionWrong();
                   }
@@ -203,38 +216,8 @@
          }
 
          checkAnswers();
-         // var passedTime = 3;
-
-function test1 (received){
-
-         var day;
-            switch (received) {
-               case 0:
-                  day = "Sunday";
-                  break;
-               case 1:
-                  day = "Monday";
-                  break;
-               case 2:
-                  day = "Tuesday";
-                  break;
-               case 3:
-                  day = "Wednesday";
-                  break;
-               case 4:
-                  day = "Thursday";
-                  // $(".gif-spot").prepend('<img src="assets/images/curryface.gif" />');
-                  break;
-               case 5:
-                  day = "Friday";
-                  break;
-               case 6:
-                  day = "Saturday";
-            }
-            document.getElementById("demo").innerHTML = "Today is " + day;
-         }
-
-         test1(4);
+         console.log(display1.question)
+    
          // End of jQuery/////////////////////////////////////////////////////////////////////////////////
       })
    </script>
