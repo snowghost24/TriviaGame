@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 <head>
-
    <!-- bootstrap link -->
-   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css'
-   />
+   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css'/>
    <!-- jquery link -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <!-- css link -->
@@ -18,62 +15,64 @@
 </head>
 
 <body>
-   <div id="status">
-
-   </div>
-
+   <div id="status"></div>
    <div id="problem">
-      <div id="question">
-
-      </div>
-      <div id="answers">
-
-      </div>
-
-
+      <div id="question"></div>
+      <div id="answers"></div>
    </div>
 
    <!-- javascript link -->
    <script src="assets/javascript/game.js"></script>
    <script>
-       function countDown(secs, elem) {
-            var element = document.querySelector("#status");
-            element.innerHTML = secs;
-            secs--;
-            var timer = setTimeout('countDown(' + secs + ',"' + elem + '")', 1000)
-            if (secs <= -1) {
-               clearTimeout(timer);
-            }
+      // Timer Function
+         function countDown(secs, elem) {
+         var element = document.querySelector("#status");
+         element.innerHTML = secs;
+         secs--;
+         var timer = setTimeout('countDown(' + secs + ',"' + elem + '")', 1000)
+         window.timer = timer;
+         if (secs <= -1) {
+            clearTimeout(timer);
+            displayVals(display2);
          }
+      }
+
+   function display(question, rightAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3) {
+      this.question = question;
+      this.righAnswer = rightAnswer;
+      this.wrongAnswer1 = wrongAnswer1;
+      this.wrongAnswer2 = wrongAnswer2;
+      this.wrongAnswer3 = wrongAnswer3
+   }
+
+   var display1 = new display("Who is jose?", "a champ", " a programmer", " a cow", "a lion");
+   var display2 = new display("Who has the most 3 pointers in a single season?", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry");
+   var display3 = new display("Who has the most 3 pointers in a single game", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry");
+   var display4 = new display("Who has the most points in a single nba quater", "Michael Jorda", "Kobe Bryant", " Klay Thompson", "Steph Curry");
+
+
+
       $(document).ready(function () {
          //Start of jQuery////////////////////////////////////////////////////////////////////////////
-         function display(question, rightAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3) {
-            this.question = question;
-            this.righAnswer = rightAnswer;
-            this.wrongAnswer1 = wrongAnswer1;
-            this.wrongAnswer2 = wrongAnswer2;
-            this.wrongAnswer3 = wrongAnswer3
-         }
+        
+        
 
-         var display1 = new display("Who is jose?", "a champ", " a programmer", " a cow", "a lion");
-         var display2 = new display("Who has the most 3 pointers in a single season?", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry");
-         var display3 = new display("Who has the most 3 pointers in a single game", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry");
-         var display4 = new display("Who has the most points in a single nba quater", "Michael Jorda", "Kobe Bryant", " Klay Thompson", "Steph Curry");
-         // Starts the timer
-         
 
-          
+
 
          // displays question on the screen
-         function displayVals(pag) {
+         window.displayVals = function (pag) {
+            $("h4").remove();
             $.each(pag, function (key, value) {
                var x = value;
                // console.log(key);
                if (key == "question") {
                   $("#question").html("<h3>" + value + "</h3>");
                   console.log(display1["righAnswer"]);
+                  
                   // console.log("this is the question");
                } else {
+                   
                   $("#answers").append("<h4>" + value + "</h4>");
                   console.log(key);
                }
@@ -86,101 +85,45 @@
          //goes inside pg
          displayVals(display1);
          // starts the counter
-        countDown(15,"status");
+         countDown(15, "status");
 
 
          function checkAnswers(pag) {
-               document.addEventListener("click", (e) => {
+            document.addEventListener("click", (e) => {
 
-                  var hitTarget = e.target.innerHTML;
-                  if (pag == display1){
+               var hitTarget = e.target.innerHTML;
+               if (pag == display1) {
                   if (hitTarget == "a champ") {
                      console.log("You made it");
-                     $("h4").remove();
-                     setTimeout(function () { displayVals(display2); }, 5000);
+                    
+                     clearTimeout(timer);
+                     countDown(15, "status");
+                     displayVals(display2);
+                    
+                     // setTimeout(function () { displayVals(display2); }, 5000);
                      // setTimeOut(function () { displayVals(display2)}, 1000*5
-                  
-                  }}
 
-                      if (pag == display2) {
-                           if (hitTarget == "Steph Curry") {
-                              console.log("You made it again");
-                              $("h4").remove();
-                              displayVals(display3);
-                           }
-                        }
-
-
-
-                  console.log(e.target);
-                  console.log(hitTarget);
+                  }
                }
-               )
-            };
+
+               if (pag == display2) {
+                  if (hitTarget == "Steph Curry") {
+                     console.log("You made it again");
+                     $("h4").remove();
+                     displayVals(display3);
+                  }
+               }
+
+
+
+               console.log(e.target);
+               console.log(hitTarget);
+            }
+            )
+         };
 
          checkAnswers();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-         var trivia = {
-            questions: {
-
-               q1: {
-                  questionString: " are birds orange? ",
-                  wrongAnswers: ["yes", "no", "yes"],
-                  righAnswer: " ov couse"
-               },
-
-               q2: {
-                  questionString: " are birds orange? ",
-                  wrongAnswers: ["yes", "no", "yes"],
-                  righAnswer: " ov couse"
-               },
-               q3: {
-                  questionString: " are birds orange? ",
-                  wrongAnswers: ["yes", "no", "yes"],
-                  righAnswer: " ov couse"
-               },
-               q4: {
-                  questionString: " are birds orange? ",
-                  wrongAnswers: ["yes", "no", "yes"],
-                  righAnswer: " ov couse"
-               },
-
-            },
-            lookup: function () {
-
-               $.each(this.questions.q1, function (key, value) {
-                  // console.log(key);
-                  // console.log(value);
-
-               })
-               // console.log(Object.keys(this.questions.q1));
-
-               // console.log(this.q1[0]);
-               // console.log(this.q1.questionString);
-               //  console.log(this.q1.questionString);
-            }
-
-         }
-         trivia.lookup();
          // End of jQuery/////////////////////////////////////////////////////////////////////////////////
       })
    </script>

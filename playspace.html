@@ -27,6 +27,49 @@
       
    }
    countDown(15, "status");
+
+   var trivia = {
+         questions: {
+
+            q1: {
+               questionString: " are birds orange? ",
+               wrongAnswers: ["yes", "no", "yes"],
+               righAnswer: " ov couse"
+            },
+
+            q2: {
+               questionString: " are birds orange? ",
+               wrongAnswers: ["yes", "no", "yes"],
+               righAnswer: " ov couse"
+            },
+            q3: {
+               questionString: " are birds orange? ",
+               wrongAnswers: ["yes", "no", "yes"],
+               righAnswer: " ov couse"
+            },
+            q4: {
+               questionString: " are birds orange? ",
+               wrongAnswers: ["yes", "no", "yes"],
+               righAnswer: " ov couse"
+            },
+
+         },
+         lookup: function () {
+
+            $.each(this.questions.q1, function (key, value) {
+               // console.log(key);
+               // console.log(value);
+
+            })
+            // console.log(Object.keys(this.questions.q1));
+
+            // console.log(this.q1[0]);
+            // console.log(this.q1.questionString);
+            //  console.log(this.q1.questionString);
+         }
+
+      }
+      trivia.lookup();
    
    </script>
    
