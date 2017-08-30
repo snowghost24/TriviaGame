@@ -12,27 +12,148 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<!-- css link -->
 	<link rel="stylesheet" href="assets/css/style.css">
+<link href="https://fonts.googleapis.com/css?family=Anton|Bahiana|Faster+One|Racing+Sans+One|Timmana" rel="stylesheet">
 	<title>Trivia Game</title>
+	<style>
+
+
+.container{
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+}
+		#hbanner{
+			margin-left: 160px;
+			font-family: 'Faster One', cursive;
+			font-size: 90px;
+		}
+		
+		.insquare{
+			width: auto;
+			color: white;
+			font-size: 60px;
+		
+		}
+		.banner-top {
+		display: block;
+			height: 50px;
+			color:white;
+		width: 100%;
+		background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.19) 24%,  rgba(0,0,0,0.9) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.19) 24%, rgba(0,0,0,0.9) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.19) 24%, rgba(0,0,0,0.9) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+
+		}
+
+		.banner-bottom{
+		height: 100px;
+		width: 100%;
+		background-color: black;
+		display: flex;
+		}
+
+		#black-logo{
+			max-height:100px;
+			width: auto;	
+		}
+
+		 #starter-btn{
+			  height: 100px;
+				width: 25%;
+				border-radius: 10px; 
+				color: white;
+				margin-top: 200px;
+			background-color: black;
+		font-size: 30px;
+		justify-content: center;
+		margin-left: 425px;
+}
+
+#question {
+	font-family: 'Racing Sans One', cursive;
+	font-size: 45px;
+	text-shadow: white 1px 1px;
+	color: black;
+	text-align: center;
+	margin-bottom: 30px;
+	margin-top: 70px;
+}
+
+h4 {
+	background-color: #e05800;
+	border: 2px solid black;
+	padding:10px;
+	width: 30%;
+	text-align: center;
+	align-content: center; 
+	border-radius: 3px;
+	font-family: 'Anton', sans-serif;
+	margin-left: 400px;
+	
+}
+
+.right , .wrong{
+	background-color: white;
+	width: 210px;
+	text-align: center;
+	background-color: blue;
+	color: white;
+	border: 3px solid red;
+	padding: 4px;
+	margin: 3px;
+
+}
+
+.cover {
+	display: flex;
+	flex: 1;
+	justify-content: center;
+}
+.gif-spot {
+	border: 6px solid black;
+	margin-top: 20px;
+	
+
+}
+
+
+
+	
+	</style>
 </head>
 
 <body>
-	<button id="starter-btn">tester</button>
+	<div class="container">
+		<div class="banner ">
+		<div class="banner-top "></div>
+		<div class="banner-bottom">
+			<img id="black-logo" class="insquare" src="assets/images/emblemblack.jpg" alt="">
+			
+		<h1 id="hbanner" class="insquare" >NBA TRIVIA</h1>
+		</div>
+		</div>
+		<div class="cover">
+		<div class="gif-spot"></div>
+		</div>
+	<button id="starter-btn">Click To Play</button>
 	<div id="status"></div>
 	<div id="problem">
 		<div id="question"></div>
 		<div id="answers"></div>
 	</div>
 	<p id="demo"></p>
-	<div class="gif-spot"></div>
+	
 	<div id="displayScore">
-		<div class="right">
-		</div>
+		<div class="right"></div>
 		<div class="wrong"></div>
 		 </div>
-		 <<div class="correct">
+		 <div class="correct">
 		 </div>
 
 		
+		
+	
 	
 	<!-- javascript link -->
 	<script src="assets/javascript/game.js"></script>
@@ -95,11 +216,11 @@
 			this.wrongAnswer3 = wrongAnswer3
 			this.gif = gif;
 		}
-		var display1 = new display("Whos is the only regular season Unanimous MVP?", "Michael Jordan", "Magic Johnson", "Steph Curry", "Lebron James", '<img src="assets/images/curryface.gif" />');
+		var display1 = new display("Which one of the following is the only player to be unanimously voted MVP?", "Michael Jordan", "Magic Johnson", "Steph Curry", "Lebron James", '<img src="assets/images/curryface.gif" />');
 		var display2 = new display("Who has scored the most 3 pointers in NBA history?", "Ray Allen", " Reggie Miller", "Steve Kerr", "Steph Curry", '<img src="assets/images/raygame6.gif" />');
 		var display3 = new display("Who holds the record for most 3 pointers in a single NBA game?", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry", '<img src="assets/images/stephla.gif" />');
 		var display4 = new display("Which player holds the record for most points in an NBA quater?", "Michael Jordan", "Kobe Bryant", "Klay Thompson", "Steph Curry", '<img src="assets/images/klay.gif" />');
-		var display5 = new display("Which player has never lost in the NBA finals?", "Bill Russell", "Michael Jordan", " Wilt Charmberlain", "Kareem Abdul Jabbar", '<img src="assets/images/mj.gif" />');
+		var display5 = new display("Which player has never lost in the NBA finals?", "Tim Duncan", "Michael Jordan", " Wilt Charmberlain", "Kareem Abdul Jabbar", '<img src="assets/images/mj.gif" />');
 		var display6 = new display("Which team holds the record for most wins in the regular season?", "Los Angeles Lakers", "Golden State Warriors", "Boston Celtics", "Chicago Bulls", '<img src="assets/images/stephandKlay.gif" />');
 		var display7 = new display("Who has scored the most points in NBA history?", "Karl Malone", "Kareem Abdul Jabbar", "Michael Jordan", "Lebron James", '<img src="assets/images/kareem.gif" />');
 		var display8 = new display("Which player has had the most points in an overtime period?", "Penny Hardaway", "Dirk Nowitzki", "Kobe Bryant", "Gilbert Arenas", '<img src="assets/images/arenas.gif" />');
@@ -115,9 +236,9 @@
 			// Displays question on the screen
 			window.displayVals = function (page) {
 				switcher++;
-					console.log(wrongAnswers, rightAnswer);
-						$(".right").html("Right Answers: "+ rightAnswer).fadeIn()
-							$(".wrong").html("Wrong Answers: "+wrongAnswers).fadeIn()
+				
+				$(".right").html("Right Answers: "+ rightAnswer).fadeIn()
+				$(".wrong").html("Wrong Answers: "+wrongAnswers).fadeIn()
 				$(".gif-spot").html("");
 				$("h4").remove();
 				$.each(page, function (key, value) {
@@ -138,6 +259,7 @@
 			$("#starter-btn").on("click", function () {
 				countDown(20, "status");
 				displayVals(display1);
+				$("#starter-btn").hide();
 			})
 
 		
@@ -147,7 +269,8 @@
 				var hitTarget = e.target.innerHTML;
 				if (switcher == 1 && hitTarget == "Steph Curry") {
 					rightAnswer++
-					$(".gif-spot").html(display1.gif);
+					$("h3").animate({ top: '250px' });
+					$(".gif-spot").html(display1.gif).animate({ bottom: '250px' }).fadeIn()
 					clearTimeout(timer);
 					setTimeout(function () {
 						displayVals(display2);
