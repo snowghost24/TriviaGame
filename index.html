@@ -12,149 +12,185 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<!-- css link -->
 	<link rel="stylesheet" href="assets/css/style.css">
-<link href="https://fonts.googleapis.com/css?family=Anton|Bahiana|Faster+One|Racing+Sans+One|Timmana" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Anton|Bahiana|Faster+One|Racing+Sans+One|Timmana" rel="stylesheet">
 	<title>Trivia Game</title>
 	<style>
+		.container {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+		}
 
-
-.container{
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-}
-		#hbanner{
+		#hbanner {
 			margin-left: 160px;
 			font-family: 'Faster One', cursive;
 			font-size: 90px;
 		}
-		
-		.insquare{
+
+		.insquare {
 			width: auto;
 			color: white;
 			font-size: 60px;
-		
 		}
+
 		.banner-top {
-		display: block;
+			display: block;
 			height: 50px;
-			color:white;
-		width: 100%;
-		background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.19) 24%,  rgba(0,0,0,0.9) 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.19) 24%, rgba(0,0,0,0.9) 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.19) 24%, rgba(0,0,0,0.9) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-
-
+			color: white;
+			width: 100%;
+			background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.19) 24%, rgba(0, 0, 0, 0.9) 100%);
+			/* FF3.6-15 */
+			background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.19) 24%, rgba(0, 0, 0, 0.9) 100%);
+			/* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.19) 24%, rgba(0, 0, 0, 0.9) 100%);
+			/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 		}
 
-		.banner-bottom{
-		height: 100px;
-		width: 100%;
-		background-color: black;
-		display: flex;
-		}
-
-		#black-logo{
-			max-height:100px;
-			width: auto;	
-		}
-
-		 #starter-btn{
-			  height: 100px;
-				width: 25%;
-				border-radius: 10px; 
-				color: white;
-				margin-top: 200px;
+		.banner-bottom {
+			height: 100px;
+			width: 100%;
 			background-color: black;
-		font-size: 30px;
-		justify-content: center;
-		margin-left: 425px;
-}
+			display: flex;
+		}
 
-#question {
-	font-family: 'Racing Sans One', cursive;
-	font-size: 45px;
-	text-shadow: white 1px 1px;
-	color: black;
-	text-align: center;
-	margin-bottom: 30px;
-	margin-top: 70px;
-}
+		#black-logo {
+			max-height: 100px;
+			width: auto;
+		}
 
-h4 {
-	background-color: #e05800;
-	border: 2px solid black;
-	padding:10px;
-	width: 30%;
-	text-align: center;
-	align-content: center; 
-	border-radius: 3px;
-	font-family: 'Anton', sans-serif;
-	margin-left: 400px;
-	
-}
+		#starter-btn {
+			height: 100px;
+			width: 25%;
+			border-radius: 10px;
+			color: white;
+			margin-top: 200px;
+			background-color: black;
+			font-size: 30px;
+			justify-content: center;
+			margin-left: 425px;
+		}
 
-.right , .wrong{
-	background-color: white;
-	width: 210px;
-	text-align: center;
-	background-color: blue;
-	color: white;
-	border: 3px solid red;
-	padding: 4px;
-	margin: 3px;
+		#question {
+			font-family: 'Racing Sans One', cursive;
+			font-size: 45px;
+			text-shadow: white 1px 1px;
+			color: black;
+			text-align: center;
+			margin-bottom: 30px;
+			margin-top: 70px;
+		}
 
-}
+		h4 {
+			background-color: #e05800;
+			border: 2px solid black;
+			padding: 10px;
+			width: 30%;
+			text-align: center;
+			align-content: center;
+			border-radius: 3px;
+			font-family: 'Anton', sans-serif;
+			margin-left: 400px;
+		}
 
-.cover {
-	display: flex;
-	flex: 1;
-	justify-content: center;
-}
-.gif-spot {
-	border: 6px solid black;
-	margin-top: 20px;
-	
+		.right,
+		.wrong {
+			background-color: white;
+			width: 210px;
+			text-align: center;
+			background-color: blue;
+			color: white;
+			border: 3px solid red;
+			padding: 4px;
+			margin: 3px;
+			display: none;
+		}
 
-}
+		.cover {
+			display: flex;
+			flex: 1;
+			justify-content: center;
+		}
 
+		.gif-spot {
+			border: 6px solid black;
+			margin-top: 20px;
+			display: none;
+		}
 
+		.correct {
+			text-align: center;
+			border: 3px solid black;
+			background-color: white;
+			display: none;
+			border-radius: 3px;
+		}
 
-	
+		#status {
+			font-size: 25px;
+			color: white;
+		}
+
+		.final {
+			text-align: center;
+			
+		}
+
+		#restart-btn {
+			height: 100px;
+			width: 25%;
+			border-radius: 10px;
+			color: white;
+			margin-top: 200px;
+			background-color: black;
+			font-size: 30px;
+			justify-content: center;
+			margin-left: 425px;
+			display:none;
+		}
 	</style>
 </head>
 
 <body>
 	<div class="container">
 		<div class="banner ">
-		<div class="banner-top "></div>
-		<div class="banner-bottom">
-			<img id="black-logo" class="insquare" src="assets/images/emblemblack.jpg" alt="">
-			
-		<h1 id="hbanner" class="insquare" >NBA TRIVIA</h1>
+			<div class="banner-top "></div>
+			<div class="banner-bottom">
+				<img id="black-logo" class="insquare" src="assets/images/emblemblack.jpg" alt="">
+
+				<h1 id="hbanner" class="insquare">NBA TRIVIA</h1>
+			</div>
 		</div>
+		<div id="status"></div>
+		<div class="correct">
 		</div>
 		<div class="cover">
-		<div class="gif-spot"></div>
+			<div class="gif-spot"></div>
 		</div>
-	<button id="starter-btn">Click To Play</button>
-	<div id="status"></div>
-	<div id="problem">
-		<div id="question"></div>
-		<div id="answers"></div>
-	</div>
-	<p id="demo"></p>
-	
-	<div id="displayScore">
-		<div class="right"></div>
-		<div class="wrong"></div>
-		 </div>
-		 <div class="correct">
-		 </div>
+		<button id="starter-btn">Click To Play</button>
 
-		
-		
+		<div id="problem">
+			<div id="question"></div>
+			<div id="answers"></div>
+		</div>
+		<p id="demo"></p>
+
+		<div id="displayScore">
+			<div class="right"></div>
+			<div class="wrong"></div>
+		</div>
+		<div class="final final-btn">
+
+		</div>
+
+		<button id= "restart-btn" >Play Again</button>
+	</div>
 	
-	
+
+
+
+
+
+
 	<!-- javascript link -->
 	<script src="assets/javascript/game.js"></script>
 	<script>
@@ -163,8 +199,8 @@ h4 {
 			var element = document.querySelector("#status");
 			element.innerHTML = secs;
 			secs--;
-		
-				var timer = setTimeout('countDown(' + secs + ',"' + elem + '")', 1000)
+
+			var timer = setTimeout('countDown(' + secs + ',"' + elem + '")', 1000)
 			window.timer = timer;
 			if (secs <= -1) {
 				clearTimeout(timer);
@@ -200,7 +236,7 @@ h4 {
 							displayVals(display10);
 							break;
 						case display10.question:
-							displayVals(display1);
+							displayScore();
 					}
 					//   console.log(day);
 				}
@@ -236,10 +272,10 @@ h4 {
 			// Displays question on the screen
 			window.displayVals = function (page) {
 				switcher++;
-				
-				$(".right").html("Right Answers: "+ rightAnswer).fadeIn()
-				$(".wrong").html("Wrong Answers: "+wrongAnswers).fadeIn()
-				$(".gif-spot").html("");
+				$("#answers").show();
+				$(".right").html("Right Answers: " + rightAnswer).fadeIn()
+				$(".wrong").html("Wrong Answers: " + wrongAnswers).fadeIn()
+				$(".gif-spot").hide();
 				$("h4").remove();
 				$.each(page, function (key, value) {
 					if (key == "question") {
@@ -262,19 +298,33 @@ h4 {
 				$("#starter-btn").hide();
 			})
 
-		
+			$("#restart-btn").on("click", function () {
+				$("#restart-btn").hide();
+				rightAnswer = 0;
+				wrongAnswers = 0;
+				switcher = 0;
+				countDown(20, "status");
+				$("#question").show();
+					$(".final").hide();
+				displayVals(display1);
+			
+			})
+
 
 
 			document.querySelector("#problem").addEventListener("click", (e) => {
+				$(".gif-spot").show();
+				$("#answers").hide();
 				var hitTarget = e.target.innerHTML;
 				if (switcher == 1 && hitTarget == "Steph Curry") {
 					rightAnswer++
-					$("h3").animate({ top: '250px' });
+					
 					$(".gif-spot").html(display1.gif).animate({ bottom: '250px' }).fadeIn()
 					clearTimeout(timer);
 					setTimeout(function () {
 						displayVals(display2);
-						countDown(18, "status");}, 2600)
+						countDown(18, "status");
+					}, 2600)
 				} else if (switcher == 1 && hitTarget !== "Steph Curry") {
 					wrongAnswers++;
 					$(".correct").html("<h1>The correct answer is Stephen Curry</h1>").show();
@@ -284,7 +334,7 @@ h4 {
 						$(".correct").hide();
 						displayVals(display2);
 						countDown(18, "status");
-					}, 3300)
+					}, 1800)
 				}
 
 				if (switcher == 2 && hitTarget == "Ray Allen") {
@@ -374,7 +424,7 @@ h4 {
 					$(".gif-spot").html(display6.gif);
 					clearTimeout(timer);
 					setTimeout(function () {
-						
+
 						displayVals(display7);
 						countDown(18, "status");
 					}, 3000)
@@ -450,50 +500,56 @@ h4 {
 					}, 2800)
 				}
 
+								
 				if (switcher == 10 && hitTarget == "Allen Iverson") {
-					wrongAnswers++;
+					rightAnswer++;
 					$(".gif-spot").html(display10.gif);
 					clearTimeout(timer);
 					setTimeout(function () {
-						// displayVals(display10);
-						// countDown(18, "status");
 						displayScore();
+						$("#question").hide();
+						$(".correct").hide();
+						$(".gif-spot").hide();
+						
 					}, 4300)
 				} else if (switcher == 10 && hitTarget !== "Allen Iverson") {
+					wrongAnswers++;
 					console.log("im here");
 					$(".correct").html("<h1>The correct answer is Allen Iverson</h1>").show();
 					$(".gif-spot").html('<img src="assets/images//mikiw.jpg" />');
 					clearTimeout(timer);
 					setTimeout(function () {
-						// displayVals(display10);
-						// countDown(18, "status");
 						displayScore();
+						$("#question").hide();
+							$(".correct").hide();
+							$(".gif-spot").hide();
 					}, 3000)
 
-				function	displayScore (){
-					$(".correct").hide();
-					$(".gif-spot").hide();
-				
-					if (rightAnswer > 7){
-						$(".right").html("Congratulations you had " + rightAnswer + ". Ball must really be life");
-					} else if (5 < rightAnswer < 7){
-						$(".right").html("Congratulations you had " + rightAnswer + ". But there is room for improvement");
-					} else if (rightAnswer < 5) {
-						$(".right").html("Wow you had " + wrongAnswers + ". You know nothing John Snow");
-					}
-
-
-					$(".restart").html('<button class="restart">Restart Game</button>')
-
-					
-					
-
-					}
 
 				}
+				function displayScore() {
+						$("#answers").hide();
+						$("#question").hide();
+						$(".final").show();
+
+
+						if (rightAnswer > 7) {
+							$(".final").html("Congratulations you had " + rightAnswer + " correct answers. Ball must really be life");
+							$("#restart-btn").show();
+						} else if (5 < rightAnswer && rightAnswer < 7) {
+							$(".final").html("OK! you had " + rightAnswer + " correct answers. But there is room for improvement");
+							$("#restart-btn").show();
+						} else if (rightAnswer < 5) {
+							$(".final").html("Wow you had " + wrongAnswers + " wrong answers. You know nothing John Snow");
+							$("#restart-btn").show();
+						}
+					}
+				
+
 			})
 			// End of jQuery/////////////////////////////////////////////////////////////////////////////////
 		})
 	</script>
 </body>
+
 </html>
