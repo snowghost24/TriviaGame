@@ -5,428 +5,372 @@
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
 <head>
-   <!-- bootstrap link -->
-   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css'
-   />
-   <!-- jquery link -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <!-- css link -->
-   <link rel="stylesheet" href="assets/css/style.css">
-   <title>Trivia Game</title>
+	<!-- bootstrap link -->
+	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/4.0.2/bootstrap-material-design.css'
+	/>
+	<!-- jquery link -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- css link -->
+	<link rel="stylesheet" href="assets/css/style.css">
+	<title>Trivia Game</title>
 </head>
 
 <body>
-<button id="starter-btn">tester</button>
+	<button id="starter-btn">tester</button>
+	<div id="status"></div>
+	<div id="problem">
+		<div id="question"></div>
+		<div id="answers"></div>
+	</div>
+	<p id="demo"></p>
+	<div class="gif-spot"></div>
+	<div id="displayScore">
+		<div class="right">
+		</div>
+		<div class="wrong"></div>
+		 </div>
+		 <<div class="correct">
+		 </div>
 
+		
 	
-   <div id="status"></div>
-   <div id="problem">
-      <div id="question"></div>
-      <div id="answers"></div>
-   </div>
+	<!-- javascript link -->
+	<script src="assets/javascript/game.js"></script>
+	<script>
+		// Timer Function
+		function countDown(secs, elem) {
+			var element = document.querySelector("#status");
+			element.innerHTML = secs;
+			secs--;
+		
+				var timer = setTimeout('countDown(' + secs + ',"' + elem + '")', 1000)
+			window.timer = timer;
+			if (secs <= -1) {
+				clearTimeout(timer);
+				function onQuestion(received) {
+					wrongAnswers++;
+					countDown(20, "status")
+					switch (received) {
+						case display1.question:
+							displayVals(display2);
+							break;
+						case display2.question:
+							displayVals(display3);
+							break;
+						case display3.question:
+							displayVals(display4);
+							break;
+						case display4.question:
+							displayVals(display5);
+							break;
+						case display5.question:
+							displayVals(display6);
+							break;
+						case display6.question:
+							displayVals(display7);
+							break;
+						case display7.question:
+							displayVals(display8);
+							break;
+						case display8.question:
+							displayVals(display9);
+							break;
+						case display9.question:
+							displayVals(display10);
+							break;
+						case display10.question:
+							displayVals(display1);
+					}
+					//   console.log(day);
+				}
+				onQuestion(page.question);
+			}
+		}
 
-   <p id="demo"></p>
-   <div class="gif-spot"></div>
-   <div class="gif-spot1"></div>
+		function display(question, rightAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3, gif) {
+			this.question = question;
+			this.righAnswer = rightAnswer;
+			this.wrongAnswer1 = wrongAnswer1;
+			this.wrongAnswer2 = wrongAnswer2;
+			this.wrongAnswer3 = wrongAnswer3
+			this.gif = gif;
+		}
+		var display1 = new display("Whos is the only regular season Unanimous MVP?", "Michael Jordan", "Magic Johnson", "Steph Curry", "Lebron James", '<img src="assets/images/curryface.gif" />');
+		var display2 = new display("Who has scored the most 3 pointers in NBA history?", "Ray Allen", " Reggie Miller", "Steve Kerr", "Steph Curry", '<img src="assets/images/raygame6.gif" />');
+		var display3 = new display("Who holds the record for most 3 pointers in a single NBA game?", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry", '<img src="assets/images/stephla.gif" />');
+		var display4 = new display("Which player holds the record for most points in an NBA quater?", "Michael Jordan", "Kobe Bryant", "Klay Thompson", "Steph Curry", '<img src="assets/images/klay.gif" />');
+		var display5 = new display("Which player has never lost in the NBA finals?", "Bill Russell", "Michael Jordan", " Wilt Charmberlain", "Kareem Abdul Jabbar", '<img src="assets/images/mj.gif" />');
+		var display6 = new display("Which team holds the record for most wins in the regular season?", "Los Angeles Lakers", "Golden State Warriors", "Boston Celtics", "Chicago Bulls", '<img src="assets/images/stephandKlay.gif" />');
+		var display7 = new display("Who has scored the most points in NBA history?", "Karl Malone", "Kareem Abdul Jabbar", "Michael Jordan", "Lebron James", '<img src="assets/images/kareem.gif" />');
+		var display8 = new display("Which player has had the most points in an overtime period?", "Penny Hardaway", "Dirk Nowitzki", "Kobe Bryant", "Gilbert Arenas", '<img src="assets/images/arenas.gif" />');
+		var display9 = new display("Who is the NBA all-time leader in assist?", "Magic Johnson", "Steve Nash", " Rajon Rondo", "John Stockton", '<img src="assets/images/stockton.gif" />');
+		var display10 = new display("Which player had 4 consecutive 40 point games as a rookie?", "Wilt Chamberlain", "Allen Iverson", "Michael Jordan", "Charles Barkley", '<img src="assets/images/ai-mj.gif" />');
 
+		var rightAnswer = 0;
+		var wrongAnswers = 0;
+		var switcher = 0;
+		$(document).ready(function () {
+			//Start of jQuery////////////////////////////////////////////////////////////////////////////
 
-   <!-- javascript link -->
-   <script src="assets/javascript/game.js"></script>
-   <script>
-      // Timer Function
-      function countDown(secs, elem) {
-         var element = document.querySelector("#status");
-         element.innerHTML = secs;
-         secs--;
-			if (secs <6 )
-         var timer = setTimeout('countDown(' + secs + ',"' + elem + '")', 1000)
-         window.timer = timer;
-         if (secs <= -1) {
-				
-				console.log(switcher);
-            clearTimeout(timer);
-            console.log(page);
-
-            function onQuestion(received) {
-               countDown(20, "status")
-               var day;
-               switch (received) {
-                  case display1.question:
-                     displayVals(display2);
-                     break;
-                  case display2.question:
-                     displayVals(display3);
-                     break;
-                  case display3.question:
-                     displayVals(display4);
-                     break;
-                  case display4.question:
-                     displayVals(display5);
-                     break;
-                  case display5.question:
-                     displayVals(display6);
-                     break;
-                  case display6.question:
-                     displayVals(display7);
-                     break;
-                  case display7.question:
-                     displayVals(display8);
-                     break;
-                  case display8.question:
-                     displayVals(display9);
-                     break;
-                  case display9.question:
-                     displayVals(display10);
-                     break;
-                  case display10.question:
-                     displayVals(display1);
-               }
-               //   console.log(day);
-            }
-            onQuestion(page.question);
-         }
-      }
-
-      function display(question, rightAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3, gif) {
-         this.question = question;
-         this.righAnswer = rightAnswer;
-         this.wrongAnswer1 = wrongAnswer1;
-         this.wrongAnswer2 = wrongAnswer2;
-         this.wrongAnswer3 = wrongAnswer3
-         this.gif = gif;
-      }
-
-      var display1 = new display("Whos is the only regular season Unanimous MVP?", "Michael Jordan", "Magic Johnson", "Steph Curry", "Lebron James", '<img src="assets/images/curryface.gif" />');
-      var display2 = new display("Who has scored the most 3 pointers in NBA history?", "Ray Allen", " Reggie Miller", "Steve Kerr", "Steph Curry", '<img src="assets/images/raygame6.gif" />');
-      var display3 = new display("Who holds the record for most 3 pointers in a single NBA game?", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry", '<img src="assets/images/stephla.gif" />');
-      var display4 = new display("Which player holds the record for most points in an NBA quater?", "Michael Jordan", "Kobe Bryant", "Klay Thompson", "Steph Curry", '<img src="assets/images/klay.gif" />');
-      var display5 = new display("Which player has never lost in the NBA finals?", "Bill Russell", "Michael Jordan", " Wilt Charmberlain", "Kareem Abdul Jabbar", '<img src="assets/images/mj.gif" />');
-      var display6 = new display("Which team holds the record for most wins in the regular season?", "Los Angeles Lakers", "Golden State Warriors", "Boston Celtics", "Chicago Bulls", '<img src="assets/images/stephandKlay.gif" />');
-      var display7 = new display("Who has scored the most points in NBA history?", "Karl Malone", "Kareem Abdul Jabbar", "Michael Jordan", "Lebron James", '<img src="assets/images/kareem.gif" />');
-      var display8 = new display("Which player has had the most points in an overtime period?", "Penny Hardaway", "Dirk Nowitzki", "Kobe Bryant", "Gilbert Arenas", '<img src="assets/images/arenas.gif" />');
-      var display9 = new display("Who is the NBA all-time leader in assist?", "Magic Johnson", "Steve Nash", " Rajon Rondo", "John Stockton", '<img src="assets/images/stockton.gif" />');
-      var display10 = new display("Which player had 4 consecutive 40 point games as a rookie?", "Wilt Chamberlain", "Allen Iverson", "Michael Jordan", "Charles Barkley", '<img src="assets/images/ai-mj.gif" />');
-
-	var switcher = 0;
-      $(document).ready(function () {
-         //Start of jQuery////////////////////////////////////////////////////////////////////////////
-
-			  //goes inside pg
-			
-
-         // Displays question on the screen
-			
-         window.displayVals = function (page) {
+			// Displays question on the screen
+			window.displayVals = function (page) {
 				switcher++;
-				console.log(switcher);
-	
-				console.log("This is window page "+ page);
+					console.log(wrongAnswers, rightAnswer);
+						$(".right").html("Right Answers: "+ rightAnswer).fadeIn()
+							$(".wrong").html("Wrong Answers: "+wrongAnswers).fadeIn()
 				$(".gif-spot").html("");
-            $("h4").remove();
-            $.each(page, function (key, value) {
-               if (key == "question") {
-                  $("#question").html("<h3>" + value + "</h3>");
-                  // console.log(display1["righAnswer"]);
-               } else if (key == "gif") {
+				$("h4").remove();
+				$.each(page, function (key, value) {
+					if (key == "question") {
+						$("#question").html("<h3>" + value + "</h3>");
+						// console.log(display1["righAnswer"]);
+					} else if (key == "gif") {
 
-               } else {
-                  $("#answers").append("<h4>" + value + "</h4>");
-               }
-            });
-            window.page = page;
-         }
+					} else {
+						$("#answers").append("<h4>" + value + "</h4>");
+					}
+				});
+				window.page = page;
+			}
 
-		
 
-		
 			// This call starts the trivia game
-			$("#starter-btn").on("click",function () {
+			$("#starter-btn").on("click", function () {
 				countDown(20, "status");
-				displayVals(display1)
+				displayVals(display1);
 			})
-			
+
+		
 
 
-       
-
-
-			var problemDiv = document.querySelector("#problem");
-         problemDiv.addEventListener("click", (e) => {
-         var hitTarget = e.target.innerHTML;
-				
-					console.log(switcher);
-					console.log(hitTarget);
-
-               if (switcher == 1 && hitTarget == "Steph Curry") {
-                  $(".gif-spot").html(display1.gif);
-						clearTimeout(timer);
-                  setTimeout(function () {
+			document.querySelector("#problem").addEventListener("click", (e) => {
+				var hitTarget = e.target.innerHTML;
+				if (switcher == 1 && hitTarget == "Steph Curry") {
+					rightAnswer++
+					$(".gif-spot").html(display1.gif);
+					clearTimeout(timer);
+					setTimeout(function () {
 						displayVals(display2);
 						countDown(18, "status");}, 2600)
-                } else if (switcher == 1 && hitTarget !== "Steph Curry") {
-				 	console.log("im here steph");
-            	   $(".gif-spot").html('<img src="assets/images/westbrookface.gif" />');
-						clearTimeout(timer);
-					  	setTimeout(function () {
-					 	displayVals(display2);
-					 	countDown(18, "status");
-					 	}, 2200)
-               } 
-					
-					
-					
-					 if (switcher == 2 && hitTarget == "Ray Allen") {
-						 console.log(hitTarget);
-						$(".gif-spot").html(display2.gif);
-						clearTimeout(timer);
-						setTimeout(function () {
+				} else if (switcher == 1 && hitTarget !== "Steph Curry") {
+					wrongAnswers++;
+					$(".correct").html("<h1>The correct answer is Stephen Curry</h1>").show();
+					$(".gif-spot").html('<img src="assets/images/jamesh.gif" />');
+					clearTimeout(timer);
+					setTimeout(function () {
+						$(".correct").hide();
+						displayVals(display2);
 						countDown(18, "status");
-					 	displayVals(display3);}, 5000)
-						} else if (switcher == 2 && hitTarget !== "Ray Allen") {
-						console.log("im here");
-					 	$(".gif-spot").html('<img src="assets/images/westbrookface.gif" />');
-						 clearTimeout(timer);
-					 	setTimeout(function () {
-					 	displayVals(display3);
-					 	countDown(18, "status");
-					 	}, 2200)
-					 }
+					}, 3300)
+				}
 
-					
-					 if (switcher == 3  && hitTarget == "Steph Curry") {
-						$(".gif-spot").html(display3.gif);
-						clearTimeout(timer);
-						setTimeout(function () {
-						displayVals(display4);
-					 	countDown(18, "status");
-					 	}, 5800)
-					 } else if (switcher == 3  && hitTarget !== "Steph Curry") {
-					 	console.log("im here");
-						$(".gif-spot").html('<img src="assets/images/westbrookface.gif" />');
-						clearTimeout(timer);
-					 	setTimeout(function () {
+				if (switcher == 2 && hitTarget == "Ray Allen") {
+					rightAnswer++;
+					$(".gif-spot").html(display2.gif);
+					clearTimeout(timer);
+					setTimeout(function () {
+						countDown(18, "status");
+						displayVals(display3);
+					}, 5000)
+				} else if (switcher == 2 && hitTarget !== "Ray Allen") {
+					wrongAnswers++;
+					$(".correct").html("<h1>The correct answer is Ray Allen</h1>").show();
+					$(".gif-spot").html('<img src="assets/images/rondoshock.gif" />');
+					clearTimeout(timer);
+					setTimeout(function () {
+						$(".correct").hide();
+						displayVals(display3);
+						countDown(18, "status");
+					}, 3000)
+				}
+
+				if (switcher == 3 && hitTarget == "Steph Curry") {
+					rightAnswer++;
+					$(".gif-spot").html(display3.gif);
+					clearTimeout(timer);
+					setTimeout(function () {
 						displayVals(display4);
 						countDown(18, "status");
-					 	}, 2200)
-					 }
+					}, 5800)
+				} else if (switcher == 3 && hitTarget !== "Steph Curry") {
+					wrongAnswers++;
+					$(".correct").html("<h1>The correct answer is Steph Curry</h1>").show();
+					$(".gif-spot").html('<img src="assets/images/westbrookface.gif" />');
+					clearTimeout(timer);
+					setTimeout(function () {
+						$(".correct").hide();
+						displayVals(display4);
+						countDown(18, "status");
+					}, 2200)
+				}
 
 
-					 if (switcher == 4 && hitTarget == "Klay Thompson") {
-						 $(".gif-spot").html(display4.gif);
-						 clearTimeout(timer);
-						 setTimeout(function () {
-							 displayVals(display5);
-							 countDown(18, "status");
-						 }, 5800)
-					 } else if (switcher == 4 && hitTarget !== "Klay Thompson") {
-						 console.log("im here");
-						 $(".gif-spot").html('<img src="assets/images/westbrookface.gif" />');
-						 clearTimeout(timer);
-						 setTimeout(function () {
-							 displayVals(display5);
-							 countDown(18, "status");
-						 }, 2200)
-					 }
+				if (switcher == 4 && hitTarget == "Klay Thompson") {
+					rightAnswer++;
+					$(".gif-spot").html(display4.gif);
+					clearTimeout(timer);
+					setTimeout(function () {
+						displayVals(display5);
+						countDown(18, "status");
+					}, 5800)
+				} else if (switcher == 4 && hitTarget !== "Klay Thompson") {
+					wrongAnswers++;
+					$(".correct").html("<h1>The correct answer is Klay Thompson</h1>").show();
+					$(".gif-spot").html('<img src="assets/images/kalyNah.gif" />');
+					clearTimeout(timer);
+					setTimeout(function () {
+						$(".correct").hide();
+						displayVals(display5);
+						countDown(18, "status");
+					}, 3000)
+				}
 
 
-					  if (switcher == 5 && hitTarget == "Michael Jordan") {
-							$(".gif-spot").html(display5.gif);
-							clearTimeout(timer);
-							setTimeout(function () {
-								displayVals(display6);
-								countDown(18, "status");
-							}, 4900)
-						} else if (switcher == 5 && hitTarget !== "Michael Jordan") {
-							console.log("im here");
-							$(".gif-spot").html('<img src="assets/images/westbrookface.gif" />');
-							clearTimeout(timer);
-							setTimeout(function () {
-								displayVals(display6);
-								countDown(18, "status");
-							}, 2200)
-						}
+				if (switcher == 5 && hitTarget == "Michael Jordan") {
+					rightAnswer++;
+					$(".gif-spot").html(display5.gif);
+					clearTimeout(timer);
+					setTimeout(function () {
+						displayVals(display6);
+						countDown(18, "status");
+					}, 4900)
+				} else if (switcher == 5 && hitTarget !== "Michael Jordan") {
+					wrongAnswers++;
+					$(".correct").html("<h1>The correct answer is Michael Jordan</h1>").show();
+					$(".gif-spot").html('<img src="assets/images/jimmyb.gif" />');
+					clearTimeout(timer);
+					setTimeout(function () {
+						$(".correct").hide();
+						displayVals(display6);
+						countDown(18, "status");
+					}, 4000)
+				}
 
-							  if (switcher == 6 && hitTarget == "Golden State Warriors") {
-									$(".gif-spot").html(display6.gif);
-									clearTimeout(timer);
-									setTimeout(function () {
-										displayVals(display7);
-										countDown(18, "status");
-									}, 3000)
-								} else if (switcher == 6 && hitTarget !== "Golden State Warriors") {
-									console.log("im here");
-									$(".gif-spot").html('<img src="assets/images/westbrookface.gif" />');
-									clearTimeout(timer);
-									setTimeout(function () {
-										displayVals(display7);
-										countDown(18, "status");
-									}, 2200)
-								}
+				if (switcher == 6 && hitTarget == "Golden State Warriors") {
+					rightAnswer++;
+					$(".gif-spot").html(display6.gif);
+					clearTimeout(timer);
+					setTimeout(function () {
+						
+						displayVals(display7);
+						countDown(18, "status");
+					}, 3000)
+				} else if (switcher == 6 && hitTarget !== "Golden State Warriors") {
+					wrongAnswers++;
+					$(".correct").html("<h1>The correct answer is Golden State Warriors</h1>").show();
+					$(".gif-spot").html('<img src="assets/images/BlakeShock.gif" />');
+					clearTimeout(timer);
+					setTimeout(function () {
+						$(".correct").hide();
+						displayVals(display7);
+						countDown(18, "status");
+					}, 2800)
+				}
 
-								 if (switcher == 7 && hitTarget == "Kareem Abdul Jabbar") {
-										$(".gif-spot").html(display7.gif);
-										clearTimeout(timer);
-										setTimeout(function () {
-											displayVals(display8);
-											countDown(18, "status");
-										}, 5800)
-									} else if (switcher == 7 && hitTarget !== "Kareem Abdul Jabbar") {
-										console.log("im here");
-										$(".gif-spot").html('<img src="assets/images/westbrookface.gif" />');
-										clearTimeout(timer);
-										setTimeout(function () {
-											displayVals(display8);
-											countDown(18, "status");
-										}, 2200)
-									}
+				if (switcher == 7 && hitTarget == "Kareem Abdul Jabbar") {
+					rightAnswer++;
+					$(".gif-spot").html(display7.gif);
+					clearTimeout(timer);
+					setTimeout(function () {
+						displayVals(display8);
+						countDown(18, "status");
+					}, 5800)
+				} else if (switcher == 7 && hitTarget !== "Kareem Abdul Jabbar") {
+					wrongAnswers++;
+					$(".correct").html("<h1>The correct answer is Kareem Abdul Jabbar</h1>").show();
+					$(".gif-spot").html('<img src="assets/images/rondoshock.gif" />');
+					clearTimeout(timer);
+					setTimeout(function () {
+						$(".correct").hide();
+						displayVals(display8);
+						countDown(18, "status");
+					}, 3000)
+				}
 
-									if (switcher == 8 && hitTarget == "Gilbert Arenas") {
-										$(".gif-spot").html(display8.gif);
-										clearTimeout(timer);
-										setTimeout(function () {
-											displayVals(display9);
-											countDown(18, "status");
-										}, 4000)
-									} else if (switcher == 8 && hitTarget !== "Gilbert Arenas") {
-										console.log("im here");
-										$(".gif-spot").html('<img src="assets/images/westbrookface.gif" />');
-										clearTimeout(timer);
-										setTimeout(function () {
-											displayVals(display9);
-											countDown(18, "status");
-										}, 2200)
-									}
+				if (switcher == 8 && hitTarget == "Gilbert Arenas") {
+					rightAnswer++;
+					$(".gif-spot").html(display8.gif);
+					clearTimeout(timer);
+					setTimeout(function () {
+						displayVals(display9);
+						countDown(18, "status");
+					}, 4000)
+				} else if (switcher == 8 && hitTarget !== "Gilbert Arenas") {
+					wrongAnswers++;
+					$(".correct").html("<h1>The correct answer is Gilbert Arenas</h1>").show();
+					$(".gif-spot").html('<img src="assets/images/westbrookface.gif" />');
+					clearTimeout(timer);
+					setTimeout(function () {
+						$(".correct").hide();
+						displayVals(display9);
+						countDown(18, "status");
+					}, 2200)
+				}
 
-									if (switcher == 9 && hitTarget == "John Stockton") {
-										$(".gif-spot").html(display9.gif);
-										clearTimeout(timer);
-										setTimeout(function () {
-											displayVals(display10);
-											countDown(18, "status");
-										}, 5000)
-									} else if (switcher == 9 && hitTarget !== "John Stockton") {
-										console.log("im here");
-										$(".gif-spot").html('<img src="assets/images/westbrookface.gif" />');
-										clearTimeout(timer);
-										setTimeout(function () {
-											displayVals(display10);
-											countDown(18, "status");
-										}, 2200)
-									}
+				if (switcher == 9 && hitTarget == "John Stockton") {
+					rightAnswer++;
+					$(".gif-spot").html(display9.gif);
+					clearTimeout(timer);
+					setTimeout(function () {
+						displayVals(display10);
+						countDown(18, "status");
+					}, 5000)
+				} else if (switcher == 9 && hitTarget !== "John Stockton") {
+					wrongAnswers++;
+					$(".correct").html("<h1>The correct answer is John Stockton</h1>").show();
+					$(".gif-spot").html('<img src="assets/images/kobe.gif" />');
+					clearTimeout(timer);
+					setTimeout(function () {
+						$(".correct").hide();
+						displayVals(display10);
+						countDown(18, "status");
+					}, 2800)
+				}
 
-									if (switcher == 10 && hitTarget == "Allen Iverson") {
-											$(".gif-spot").html(display10.gif);
-											clearTimeout(timer);
-											setTimeout(function () {
-												// displayVals(display10);
-												// countDown(18, "status");
-											}, 4300)
-										} else if (switcher == 10 && hitTarget !== "Allen Iverson") {
-											console.log("im here");
-											$(".gif-spot").html('<img src="assets/images/westbrookface.gif" />');
-											clearTimeout(timer);
-											setTimeout(function () {
-												// displayVals(display10);
-												// countDown(18, "status");
-											}, 2200)
-										}
-					// if (page == display2 && hitTarget == "Ray Allen") {
-               //    $(".gif-spot").html(display2.gif);
-               //    setTimeout(function () {
-					// 		displayVals(display3);
-               //       nextQuestionRight();}, 4000)
-               // } else if (page == display2 && hitTarget !== "Ray Allen") {
-               //    $(".gif-spot").html('<img src="assets/images/westbrookface.gif" />');
-               //    nextQuestionWrong();
-               //    displayVals(display3);
-               // }
-					
+				if (switcher == 10 && hitTarget == "Allen Iverson") {
+					wrongAnswers++;
+					$(".gif-spot").html(display10.gif);
+					clearTimeout(timer);
+					setTimeout(function () {
+						// displayVals(display10);
+						// countDown(18, "status");
+						displayScore();
+					}, 4300)
+				} else if (switcher == 10 && hitTarget !== "Allen Iverson") {
+					console.log("im here");
+					$(".correct").html("<h1>The correct answer is Allen Iverson</h1>").show();
+					$(".gif-spot").html('<img src="assets/images//mikiw.jpg" />');
+					clearTimeout(timer);
+					setTimeout(function () {
+						// displayVals(display10);
+						// countDown(18, "status");
+						displayScore();
+					}, 3000)
 
-
-
-
-
-
-
-
-
-               // if (page == display2 && hitTarget == "Ray Allen") {
-               //    $(".gif-spot").html(display2.gif);
-               //    setTimeout(function () {
-               //       nextQuestionRight();
-               //       displayVals(display3);
-               //       $(".gif-spot").html("");
-               //    }, 4000)
-               // } else if (page == display2 && hitTarget !== "Ray Allen") {
-               //    $(".gif-spot").prepend('<img src="assets/images/westbrookface.gif" />');
-               //    nextQuestionWrong();
-               // }
-
-
-               // if (page == display3 && hitTarget == "Steph Curry") {
-               //    $(".gif-spotß").append('<img src="assets/images/curryslickmove.gif" />');
-               //    console.log("You made it again");
-               //    $("h4").remove();
-               //    displayVals(display3);
-               // } else if (page == display2 && hitTarget !== "Steph Curry") {
-               //    $(".gif-spot").prepend('<img src="assets/images/westbrookface.gif" />');
-               //    nextQuestionWrong();
-               // }
-            })
-         
-
-         // if (page == display2 && hitTarget == "Steph Curry") {
-         //    console.log("im insde");
-         // $(".gif-spot").prepend('<img src="assets/images/curryslickmove.gif" />');
-         //    setTimeout(function () { nextQuestionRight(); }, 2600)
-         // } else if (page == display2 && hitTarget !== "Steph Curry") {
-         //    $(".gif-spot").prepend('<img src="assets/images/westbrookface.gif" />');
-         //    nextQuestionWrong();
-         // }
-
-
-
-
-
-
-         // if (page == display2) {
-         //    if (hitTarget == "Steph Curry") {
-         //       console.log("You made it again");
-         //       $("h4").remove();
-         //       displayVals(display3);
-         //    }
-         // }
-
-
-
-
-
-         // console.log(e.target);
-         // console.log(hitTarget);
-         function nextQuestionRight() {
+				function	displayScore (){
+					$(".correct").hide();
+					$(".gif-spot").hide();
 				
-            countDown(15, "status");
+					if (rightAnswer > 7){
+						$(".right").html("Congratulations you had " + rightAnswer + ". Ball must really be life");
+					} else if (5 < rightAnswer < 7){
+						$(".right").html("Congratulations you had " + rightAnswer + ". But there is room for improvement");
+					} else if (rightAnswer < 5) {
+						$(".right").html("Wow you had " + wrongAnswers + ". You know nothing John Snow");
+					}
 
-            // $(".gif-spot").remove();
-         }
-//TODO:bring this back
-         // function nextQuestionWrong() {
-         //    setTimeout(function () {
-         //       clearTimeout(timer);
-         //       countDown(15, "status");
-         //       // displayVals(display2);
-         //       $(".gif-spot").remove();
-         //    }, 3000);
-         // }
 
-         
-         console.log(display1.question)
+					$(".restart").html('<button class="restart">Restart Game</button>')
 
-         // End of jQuery/////////////////////////////////////////////////////////////////////////////////
-      })
+					
+					
+
+					}
+
+				}
+			})
+			// End of jQuery/////////////////////////////////////////////////////////////////////////////////
+		})
 	</script>
-	
-
 </body>
-
 </html>
