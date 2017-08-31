@@ -2,3 +2,136 @@ body {
    background-image: url("../images/background.jpg");
    background-size: cover;
 }
+
+.container {
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+		}
+
+		#hbanner {
+			margin-left: 160px;
+			font-family: 'Faster One', cursive;
+			font-size: 90px;
+		}
+
+		.insquare {
+			width: auto;
+			color: white;
+			font-size: 60px;
+		}
+
+		.banner-top {
+			display: block;
+			height: 50px;
+			color: white;
+			width: 100%;
+			background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.19) 24%, rgba(0, 0, 0, 0.9) 100%);
+			/* FF3.6-15 */
+			background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.19) 24%, rgba(0, 0, 0, 0.9) 100%);
+			/* Chrome10-25,Safari5.1-6 */
+			background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.19) 24%, rgba(0, 0, 0, 0.9) 100%);
+			/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		}
+
+		.banner-bottom {
+			height: 100px;
+			width: 100%;
+			background-color: black;
+			display: flex;
+		}
+
+		#black-logo {
+			max-height: 100px;
+			width: auto;
+		}
+
+		#starter-btn {
+			height: 100px;
+			width: 25%;
+			border-radius: 10px;
+			color: white;
+			margin-top: 200px;
+			background-color: black;
+			font-size: 30px;
+			justify-content: center;
+			margin-left: 425px;
+		}
+
+		#question {
+			font-family: 'Racing Sans One', cursive;
+			font-size: 45px;
+			text-shadow: white 1px 1px;
+			color: black;
+			text-align: center;
+			margin-bottom: 30px;
+			margin-top: 70px;
+		}
+
+		h4 {
+			background-color: #e05800;
+			border: 2px solid black;
+			padding: 10px;
+			width: 30%;
+			text-align: center;
+			align-content: center;
+			border-radius: 3px;
+			font-family: 'Anton', sans-serif;
+			margin-left: 400px;
+		}
+
+		.right,
+		.wrong {
+			background-color: white;
+			width: 210px;
+			text-align: center;
+			background-color: blue;
+			color: white;
+			border: 3px solid red;
+			padding: 4px;
+			margin: 3px;
+			display: none;
+		}
+
+		.cover {
+			display: flex;
+			flex: 1;
+			justify-content: center;
+		}
+
+		.gif-spot {
+			border: 6px solid black;
+			margin-top: 20px;
+			display: none;
+		}
+
+		.correct {
+			text-align: center;
+			border: 3px solid black;
+			background-color: white;
+			display: none;
+			border-radius: 3px;
+		}
+
+		#status {
+			font-size: 25px;
+			color: white;
+		}
+
+		.final {
+			text-align: center;
+			
+		}
+
+		#restart-btn {
+			height: 100px;
+			width: 25%;
+			border-radius: 10px;
+			color: white;
+			margin-top: 200px;
+			background-color: black;
+			font-size: 30px;
+			justify-content: center;
+			margin-left: 425px;
+			display:none;
+		}
