@@ -1,4 +1,4 @@
-// This funtion fires every second to create a countdonw
+// This funtion fires every second to create a countdown
 function countDown(secs, elem) {
    var element = document.querySelector("#status");
    element.innerHTML = secs;
@@ -15,7 +15,7 @@ function countDown(secs, elem) {
          displayVals(allDisplays[newNumb]);
       }
    }
-
+//sets right and wrong variables
 		function displayer(question, rightAnswer, wrongAnswer1, wrongAnswer2, wrongAnswer3, gif) {
 			this.question = question;
 			this.righAnswer = rightAnswer;
@@ -24,6 +24,8 @@ function countDown(secs, elem) {
 			this.wrongAnswer3 = wrongAnswer3
 			this.gif = gif;
 		}
+
+		//stores gifs, questions and answers
 		var display1 = new displayer("Which one of the following is the only player to be unanimously voted MVP?", "Michael Jordan", "Magic Johnson", "Steph Curry", "Lebron James", '<img src="assets/images/curryface.gif" />');
 		var display2 = new displayer("Who has scored the most 3 pointers in NBA history?", "Ray Allen", " Reggie Miller", "Steve Kerr", "Steph Curry", '<img src="assets/images/raygame6.gif" />');
 		var display3 = new displayer("Who holds the record for most 3 pointers in a single NBA game?", "Ray Allen", " Reggie Miller", " Kobe Bryant", "Steph Curry", '<img src="assets/images/stephla.gif" />');
